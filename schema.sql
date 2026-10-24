@@ -5,7 +5,7 @@ password_hash TEXT NOT NULL,
 display_name TEXT NOT NULL,
 role TEXT NOT NULL CHECK(role IN('recipient', 'organization')),
 is_verified_organization INTEGER NOT NULL DEFAULT 0 CHECK(is_verified_organization IN(0,1)),
-created_at TEXT DEFAULT CURRENT_TIMESTAMP
+created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
 );
 
 CREATE TABLE food_listings(
@@ -24,7 +24,7 @@ location TEXT NOT NULL,
 ingredients TEXT NOT NULL,
 allergens TEXT,
 status TEXT NOT NULL DEFAULT 'active' CHECK(status IN('active', 'cancelled', 'closed')),
-created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
 );
 
 CREATE TABLE reservations(
@@ -32,9 +32,9 @@ id INTEGER PRIMARY KEY AUTOINCREMENT,
 listing_id INTEGER NOT NULL REFERENCES food_listings(id),
 recipient_id INTEGER NOT NULL REFERENCES users(id),
 reservation_code TEXT NOT NULL UNIQUE,
-status TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-collected_at TEXT,
-
+status TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
+reserved_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
+collected_at TEXT
 );
 
 CREATE UNIQUE INDEX uq_active_reservation_per_recipient ON reservations(listing_id, recipient_id) WHERE status = 'reserved';

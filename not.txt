@@ -1,0 +1,45 @@
+MIMARI
+-------------------------------------------------------------------------------
+SharyMeal/
+├── app.py              # Flask uygulaması + tüm route'lar
+├── config.py           # ayarlar
+├── db.py               # DB bağlantısı
+├── auth.py             # giriş kontrolü, yetki decorator'ları
+├── services.py         # iş mantığı (rezervasyon, ilan, doğrulama)
+├── timeutil.py         # zaman dönüşümleri
+├── init_db.py          # DB'yi sıfırdan kurar
+├── seed.py             # test verisi
+├── schema.sql          # tablolar + index'ler
+├── requirements.txt
+├── README.md
+├── .gitignore
+├── instance/
+│   └── sharymeal.db    # git'e girmez
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── listing_detail.html
+│   ├── login.html
+│   ├── register.html
+│   ├── register_org.html
+│   ├── my_reservations.html
+│   ├── org/
+│   │   ├── listings.html
+│   │   ├── listing_new.html
+│   │   ├── listing_reservations.html
+│   │   └── verify_code.html
+│   └── errors/
+│       ├── 403.html
+│       ├── 404.html
+│       └── 500.html
+├── static/
+│   └── css/style.css
+└── tests/
+    ├── conftest.py
+    ├── test_schema.py
+    ├── test_reservation.py
+    ├── test_concurrency.py
+    ├── test_auth.py
+    ├── test_permissions.py
+    └── test_collection.py
+    
