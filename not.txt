@@ -43,3 +43,5 @@ SharyMeal/
     ├── test_permissions.py
     └── test_collection.py
     
+
+##### harvardcs50x flask videosundan bakarak sayfaları tasarla #####

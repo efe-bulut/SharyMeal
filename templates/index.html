@@ -1,0 +1,142 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Shary Meal | Home
+{% endblock %}
+
+{% block main %}
+
+
+<!-- Ana Hero / Carousel Kapsayıcısı -->
+<div id="customCarousel" class="relative w-full h-screen overflow-hidden -mt-20">
+  
+  <!-- Görsellerin Kaydığı Katman -->
+  <div class="carousel-slides relative w-full h-full">
+    <!-- 1. Slayt -->
+    <div class="slide-item absolute inset-0 w-full h-full opacity-100 transition-opacity duration-1000 ease-in-out">
+      <img src="{{ url_for('static', filename='images/background.png') }}" class="w-full h-full object-cover" alt="Background 1">
+    </div>
+    <!-- 2. Slayt -->
+    <div class="slide-item absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out">
+      <img src="{{ url_for('static', filename='images/background2.png') }}" class="w-full h-full object-cover" alt="Background 2">
+    </div>
+    <!-- 3. Slayt -->
+    <div class="slide-item absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out">
+      <img src="{{ url_for('static', filename='images/background.png') }}" class="w-full h-full object-cover" alt="Background 3">
+    </div>
+  </div>
+
+  <!-- ÜZERİNDEKİ YAZILAR VE BUTONLAR (Sabit Durur) -->
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-20 pointer-events-none">
+    <div class="pointer-events-auto">
+      <h1 class="text-white text-4xl md:text-7xl font-bold">
+        Welcome to Shary Meal
+      </h1>
+      <p class="text-white text-base md:text-lg mt-2 font-light">
+        Share Food, Reduce Waste, Build Community
+      </p>
+
+      <!-- Şeffaf / Blurlu Butonlar -->
+      <div class="flex flex-row justify-center items-center gap-4 mt-4">
+        <a href="{{url_for('about')}}" class="btn px-6 py-2.5 rounded- font-medium text-sm transition-all duration-300" style="background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white;" onmouseover="this.style.backgroundColor='rgba(0, 0, 0, 0.4)'" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.15)'">
+          About Us
+        </a>
+        <a href="#" class="btn px-6 py-2.5 rounded- font-medium text-sm transition-all duration-300" style="background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white;" onmouseover="this.style.backgroundColor='rgba(0, 0, 0, 0.4)'" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.15)'">
+          Explore Meal
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alt Göstergeler (Indicators) & Butonlar -->
+  <div class="absolute bottom-6 left-0 right-0 flex justify-between items-center px-8 z-30">
+    <!-- Çizgi / Nokta Göstergeleri -->
+    <div class="flex gap-2">
+      <button onclick="goToSlide(0)" class="indicator-dot w-8 h-1.5 bg-white bg-opacity-100 rounded-full transition-all duration-300"></button>
+      <button onclick="goToSlide(1)" class="indicator-dot w-8 h-1.5 bg-white bg-opacity-40 rounded-full transition-all duration-300"></button>
+      <button onclick="goToSlide(2)" class="indicator-dot w-8 h-1.5 bg-white bg-opacity-40 rounded-full transition-all duration-300"></button>
+    </div>
+
+    <!-- İleri / Geri Kontrolleri -->
+    <div class="flex gap-2 text-white">
+      <button onclick="prevSlide()" class="px-3 py-1 bg-black/30 backdrop-blur-md rounded-full hover:bg-black/60 transition">❮</button>
+      <button onclick="nextSlide()" class="px-3 py-1 bg-black/30 backdrop-blur-md rounded-full hover:bg-black/60 transition">❯</button>
+    </div>
+  </div>
+
+</div>
+
+    <div class="background-index relative w-full h-screen bg-cover bg-center flex flex-col items-center justify-center">
+        <div style="margin-bottom: 8%;">
+            <h1 style="font-weight: 100; color: rgb(236, 236, 236);" class="text-center text-6xl md:text-[6rem] px-4">Welcome to Shary Meal</h1>
+            <h2 style="font-weight: 100; color: rgb(236, 236, 236);" class="text-center text-1xl md:text-4xl px-4">Share Food, Reduce Waste, Build Community</h2>
+            
+            
+        </div>
+
+    </div>
+
+<!-- Kesintisiz Otomatik Kaydırma Script'i -->
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('#customCarousel .slide-item');
+  const dots = document.querySelectorAll('#customCarousel .indicator-dot');
+  const totalSlides = slides.length;
+  let slideInterval;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.remove('opacity-0');
+        slide.classList.add('opacity-100');
+      } else {
+        slide.classList.remove('opacity-100');
+        slide.classList.add('opacity-0');
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.remove('bg-opacity-40');
+        dot.classList.add('bg-opacity-100');
+      } else {
+        dot.classList.remove('bg-opacity-100');
+        dot.classList.add('bg-opacity-40');
+      }
+    });
+
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    let next = (currentSlide + 1) % totalSlides;
+    showSlide(next);
+  }
+
+  function prevSlide() {
+    let prev = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(prev);
+  }
+
+  function goToSlide(index) {
+    showSlide(index);
+    resetInterval();
+  }
+
+  function startInterval() {
+    slideInterval = setInterval(nextSlide, 3000); // 3 saniyede bir otomatik kayar
+  }
+
+  function resetInterval() {
+    clearInterval(slideInterval);
+    startInterval();
+  }
+
+  // Sayfa yüklendiğinde otomatik başlat
+  document.addEventListener('DOMContentLoaded', () => {
+    startInterval();
+  });
+</script>
+
+
+{% endblock %}

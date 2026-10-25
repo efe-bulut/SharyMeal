@@ -1,0 +1,20 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Google Sans Flex', sans-serif;
+  }
+
+.background-index {
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Navbar'ın z-index değerinden (50) küçük olmalı ki navbar üstte kalsın */
+}
