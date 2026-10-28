@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Shary Meal | Register
+{% endblock %}
+
+{% block main %}
+<div class="auth-wrapper">
+  
+  <!-- SOL TARAF: LOGO VE FORM -->
+  <div class="auth-left">
+    <!-- Logo Alanı -->
+    <div>
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="brand-logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='inline-block';">
+      <span id="fallback-logo" class="fw-bold fs-5 text-dark" style="display:none;">SharyMeal</span>
+      <p class="slogan-font m-0">Join our sharing table.</p>
+    </div>
+
+    <!-- Form İçeriği -->
+    <div class="form-container my-auto py-4">
+      <h1 class="form-title">Create Account</h1>
+
+      <form action="/register" method="POST">
+        
+        <!-- Kayıt Türü (Role) -->
+        <div class="mb-3">
+          <label for="role" class="form-label small fw-bold text-secondary">Register As</label>
+          <select name="role" id="role" class="form-control custom-input" required onchange="toggleOrgFields()">
+            <option value="recipient">Recipient / Individual</option>
+            <option value="organization">Organization / Institution</option>
+          </select>
+        </div>
+
+        <!-- Username -->
+        <div class="mb-3">
+          <input 
+            type="text" 
+            name="name" 
+            class="form-control custom-input" 
+            placeholder="Username" 
+            required
+          >
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <input 
+            type="email" 
+            name="email" 
+            class="form-control custom-input" 
+            placeholder="Email address" 
+            required
+          >
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <input 
+            type="password" 
+            name="password" 
+            class="form-control custom-input" 
+            placeholder="Password" 
+            required
+          >
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mb-3">
+          <input 
+            type="password" 
+            name="confirmation" 
+            class="form-control custom-input" 
+            placeholder="Confirm password" 
+            required
+          >
+        </div>
+
+        <!-- Address (Başlangıçta recipient seçili olduğu için gizli ve zorunsuz) -->
+        <div class="mb-4" id="address-field-container" style="display: none;">
+          <input 
+            type="text" 
+            name="address" 
+            id="address-input"
+            class="form-control custom-input" 
+            placeholder="Organization Address"
+          >
+        </div>
+
+        <!-- Register Button -->
+        <button type="submit" class="btn btn-custom-login mb-3">
+          REGISTER
+        </button>
+      </form>
+
+      <!-- Giriş Sayfasına Yönlendirme -->
+      <div class="mt-2 text-center">
+        <p class="small text-secondary m-0">
+          Already have an account? <a href="/login" class="text-decoration-none fw-bold" style="color: #4fb3d9;">Log in here</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Alt Boşluk Dengeleyicisi -->
+    <div></div>
+  </div>
+
+  <!-- SAĞ TARAF: GÖRSEL -->
+  <div class="auth-right"></div>
+
+</div>
+
+<!-- Dinamik Alan Kontrolü için JavaScript -->
+<script>
+  function toggleOrgFields() {
+    var roleSelect = document.getElementById("role");
+    var addressContainer = document.getElementById("address-field-container");
+    var addressInput = document.getElementById("address-input");
+
+    if (roleSelect.value === "organization") {
+      // Organizasyon seçildiyse adresi göster ve zorunlu yap
+      addressContainer.style.display = "block";
+      addressInput.setAttribute("required", "required");
+    } else {
+      // Bireysel/Recipient seçildiyse adresi gizle, değerini temizle ve zorunluluğu kaldır
+      addressContainer.style.display = "none";
+      addressInput.removeAttribute("required");
+      addressInput.value = ""; 
+    }
+  }
+
+  // Sayfa ilk yüklendiğinde varsayılan durumun tetiklenmesi için
+  document.addEventListener("DOMContentLoaded", function() {
+    toggleOrgFields();
+  });
+</script>
+{% endblock %}

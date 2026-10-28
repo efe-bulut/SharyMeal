@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Google+Sans+Flex:opsz,wght@1..144,1..1000&family=Inconsolata:wdth,wght@106,200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Monsieur+La+Doulaise&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
     <style>
     /* Chrome, Safari ve Opera için kaydırma çubuğunu gizler */
     ::-webkit-scrollbar {
@@ -27,9 +28,9 @@
 </style>
 
 </head>
-<body style="margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: #dfdfdf; color: #000;">
+<body style="margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: #eeeeee; color: #000;">
 
-<nav class="navbar md:navbar-expand fixed top-0 left-0 right-0 z-50 w-full" style="background-color: rgba(18, 18, 18, 0.486); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(72px); border-bottom: 1px solid rgba(218, 218, 218, 0.1);">
+<nav class="navbar md:navbar-expand fixed top-0 left-0 right-0 z-50 w-full" style="background-color: rgba(18, 18, 18, 0.171); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(72px); border-bottom: 1px solid rgba(218, 218, 218, 0.1);">
   <div style="width: 100%;"class="container-fluid w-full px-6 flex items-center justify-between">
     <a class="navbar-brand" href="#">
         <img src="{{ url_for('static', filename='images/logo-white.png') }}" alt="SharyMeal Logo" style="height: 50px;">
@@ -46,8 +47,8 @@
         <ul class="navbar-nav me-auto mb-2 md:mb-0" style="display: flex; gap: 2rem; align-items: center;">
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="{{url_for('about')}}">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Explore Meal</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">My reservations</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{url_for('explore')}}">Explore Meal</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{url_for('myreservations')}}">My reservations</a></li>
           <li class="nav-item "><a class="nav-link" href="#"><img class="avatar-img rounded-full " src="../static/images/avatar.png" alt="mdo" width="40" height="40"></a></li>
         </ul>
       </div>

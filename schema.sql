@@ -3,6 +3,7 @@ id INTEGER PRIMARY KEY AUTOINCREMENT,
 email TEXT NOT NULL UNIQUE,
 password_hash TEXT NOT NULL,
 display_name TEXT NOT NULL,
+address TEXT NOT NULL,
 role TEXT NOT NULL CHECK(role IN('recipient', 'organization')),
 is_verified_organization INTEGER NOT NULL DEFAULT 0 CHECK(is_verified_organization IN(0,1)),
 created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
