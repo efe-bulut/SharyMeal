@@ -116,3 +116,29 @@ html, body {
   font-size: 1.6rem; /* El yazısı fontları biraz küçük durabildiği için boyutu ideal ayarladık */
   color: #0f0f0f;    /* Şık ve yumuşak bir renk */
 }
+
+/* EN SAĞA YASLAMA VE LOGIN/REGISTER BÖLÜMÜ */
+.auth-links {
+    margin-left: auto; /* Solundaki tüm boşluğu doldurarak bu alanı EN SAĞA iter */
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Yazılar ve taksim işareti arasındaki boşluk */
+    font-size: 15px;
+}
+
+.auth-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.auth-links a:hover {
+    color: #0a84b4; /* Üzerine gelindiğinde renk değişimi */
+}
+
+/* Aradaki bölücü çizgi (/) stili */
+.auth-links .divider {
+    color: #888888; /* Çizginin rengini hafif silik yapabilirsiniz */
+    user-select: none; /* Metin seçilirken taksim işaretinin seçilmesini engeller */
+}
